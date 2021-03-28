@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Golf Blitz Stats</title>
+
+    <style>
+      .lvl1 {
+        width: 8.3%;
+      }
+      .lvl2 {
+        width: 16.6%;
+      }
+      .lvl3 {
+        width: 25%;
+      }
+      .lvl4 {
+        width: 33.2%;
+      }
+      .lvl5 {
+        width: 41.6%;
+      }
+      .lvl6 {
+        width: 50%;
+      }
+      .lvl7 {
+        width: 58.3%;
+      }
+      .lvl8 {
+        width: 66.6%;
+      }
+      .lvl9 {
+        width: 75%;
+      }
+      .lvl10 {
+        width: 83.3%;
+      }
+      .lvl11 {
+        width: 91.7%;
+      }
+      .lvl12 {
+        width: 100%;
+      }
+      .lvl13 {
+        width: 100%;
+        border: 1px solid rgba(255, 255, 255, 0.75);
+      }
+
+      .progress-bar {
+        background-image: url("img/mystats_progress-pattern.png");
+        border-top-right-radius: 0.25rem;
+        border-bottom-right-radius: 0.25rem;
+        background-repeat: repeat-x;
+        background-size: auto 100%;
+        background-repeat: repeat-x;
+        -webkit-animation-name: scrollingbg;
+        -webkit-animation-duration: 40s;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-timing-function: linear;
+        -moz-animation-name: scrollingbg;
+        -moz-animation-duration: 40s;
+        -moz-animation-iteration-count: infinite;
+        -moz-animation-timing-function: linear;
+        -ms-animation-name: scrollingbg;
+        -ms-animation-duration: 40s;
+        -ms-animation-iteration-count: infinite;
+        -ms-animation-timing-function: linear;
+        animation-name: scrollingbg;
+        animation-duration: 40s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+
+      .progress {
+        background-color: rgba(255, 255, 255, 0.25) !important;
+      }
+
+      @-webkit-keyframes scrollingbg {
+        0% {
+          background-position: left bottom;
+        }
+        100% {
+          background-position: 1024px bottom;
+        }
+      }
+
+      @-moz-keyframes scrollingbg {
+        0% {
+          background-position: left bottom;
+        }
+        100% {
+          background-position: 1024px bottom;
+        }
+      }
+
+      @-o-keyframes scrollingbg {
+        0% {
+          background-position: left bottom;
+        }
+        100% {
+          background-position: 1024px bottom;
+        }
+      }
+
+      @keyframes scrollingbg {
+        0% {
+          background-position: left bottom;
+        }
+        100% {
+          background-position: 1024px bottom;
+        }
+      }
+
+      @font-face {
+        font-family: "PT-Schoolhouse";
+        src: local("PT Schoolhouse Normal"), local("PT-Schoolhouse"),
+          url("fonts/PT-Schoolhouse.woff2") format("woff2"),
+          url("fonts/fonts/PT-Schoolhouse.woff") format("woff"),
+          url("fonts/PT-Schoolhouse.ttf") format("truetype");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      body,
+      html {
+        font-size: 18pt;
+        color: #ffffff !important;
+        font-family: "PT-Schoolhouse", Helvetica, Arial, sans-serif !important;
+        line-height: 0.8 !important;
+      }
+
+      .container {
+        border-radius: 30px 30px 0 0;
+        background: #000e2c;
+        padding: 20px 40px 0px 40px !important;
+        max-width: 420px !important;
+      }
+
+      div.col-auto {
+        min-width: 55px;
+      }
+
+      div.col {
+        padding-right: 0px;
+        padding-left: 0px;
+      }
+
+      .text-blue {
+        color: #6b9ef1;
+      }
+      div.bg-blue {
+        background-color: #6b9ef1;
+      }
+      .text-green {
+        color: #91f66c;
+      }
+      div.bg-green {
+        background-color: #91f66c;
+      }
+      .text-yellow {
+        color: #fbbc37;
+      }
+      div.bg-yellow {
+        background-color: #fbbc37;
+      }
+
+      .text-red {
+        color: #db013e;
+      }
+      div.bg-red {
+        background-color: #db013e;
+      }
+
+      #levelinfo {
+        width: 75px;
+        height: 75px;
+        top: 50%;
+        left: 50%;
+        /*    background-color:white;
+    border-radius:50%;
+    border: 3px solid black;
+	*/
+        background-image: url("img/LevelBadge.png");
+        background-size: cover;
+
+        margin-left: -77px;
+        margin-top: -130px;
+        float: left;
+      }
+
+      #lvlval {
+        display: grid;
+        height: 100%;
+        margin: 0;
+        place-items: center center;
+        color: black;
+        font-size: 32pt;
+      }
+
+      #trophyinfo {
+        z-index: -100;
+        height: 35px;
+        top: 40%;
+        left: 50%;
+        background-color: #aac5fa;
+        margin-left: -85px;
+        margin-top: -159px;
+        float: left;
+        border-radius: 15px;
+        border: 2px solid #fff;
+        text-align: center;
+        padding: 8px 35px 8px 10px;
+        background-image: url("img/trophy-small.png");
+        background-position: right;
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+
+      #trophyval {
+        color: rgb(255, 213, 0);
+        text-shadow: -2px -2px 0 #000, 0 -2px 0 #000, 3px -2px 0 #000,
+          3px 0 0 #000, 3px 3px 0 #000, 0 3px 0 #000, -2px 3px 0 #000,
+          -2px 0 0 #000;
+      }
+
+      .statval {
+        font-size: 1.4rem;
+      }
+
+      .valtext {
+        padding-top: 4px;
+      }
+
+      div#displayName {
+        text-align: center;
+        font-size: 1.35rem;
+        padding: 15px !important;
+        background-color: rgba(170, 197, 250, 0.75);
+        border-radius: 0 0 30px 30px;
+        text-shadow: -2px -2px 0 #000, 0 -2px 0 #000, 3px -2px 0 #000,
+          3px 0 0 #000, 3px 3px 0 #000, 0 3px 0 #000, -2px 3px 0 #000,
+          -2px 0 0 #000;
+      }
+    </style>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p class="text-right valtext">SPEED</p>
+        </div>
+        <div class="col-auto text-center">
+          <span class="text-blue statval" id="speedval">1</span>
+        </div>
+        <div class="col">
+          <div class="progress">
+            <div
+              class="progress-bar bg-blue"
+              id="speedbar"
+              role="progressbar"
+              aria-valuenow="10"
+              aria-valuemin="0"
+              aria-valuemax="12"
+            ></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p class="text-right valtext">POWER</p>
+        </div>
+        <div class="col-auto text-center">
+          <span class="text-green statval" id="powval">1</span>
+        </div>
+        <div class="col">
+          <div class="progress">
+            <div
+              class="progress-bar bg-green"
+              id="powerbar"
+              role="progressbar"
+              aria-valuenow="10"
+              aria-valuemin="0"
+              aria-valuemax="12"
+            ></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p class="text-right valtext">ACCURACY</p>
+        </div>
+        <div class="col-auto text-center">
+          <span class="text-yellow statval" id="accval">1</span>
+        </div>
+        <div class="col">
+          <div class="progress">
+            <div
+              class="progress-bar bg-yellow"
+              id="accbar"
+              role="progressbar"
+              aria-valuenow="10"
+              aria-valuemin="0"
+              aria-valuemax="12"
+            ></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p class="text-right valtext">COOL DOWN</p>
+        </div>
+        <div class="col-auto text-center">
+          <span class="text-red statval" id="coolval">1</span>
+        </div>
+        <div class="col">
+          <div class="progress">
+            <div
+              class="progress-bar bg-red"
+              id="coolbar"
+              role="progressbar"
+              aria-valuenow="10"
+              aria-valuemin="0"
+              aria-valuemax="12"
+            ></div>
+          </div>
+        </div>
+      </div>
+      <div id="trophyinfo">
+        <span id="trophyval">1</span>
+      </div>
+      <div id="levelinfo">
+        <span id="lvlval">15</span>
+      </div>
+    </div>
+    <div id="displayName" class="container"></div>
+    <div id="errordiv" class="alert alert-danger" role="alert">
+      Friend Code not specified. <br />Expecting URL like
+      <a href="https://playgolfblitz.com/gbstats?friendcode=br3tt"
+        >https://playgolfblitz.com/gbstats?friendcode=br3tt</a
+      >
+    </div>
+  </body>
+
+  <script>
+    //default values
+    var speed = 1;
+    var power = 1;
+    var acc = 1;
+    var cool = 1;
+    var lvl = 1;
+    var trophies = 0;
+    var displayName = "Name";
+
+    //autoreload stuff
+    var refreshes = 0;
+    const refreshSeconds = 20;
+
+    let linkParams = new URLSearchParams(window.location.search);
+    var friendcode = linkParams.get("friendcode");
+
+    if (friendcode != null) {
+      document.getElementById("errordiv").remove();
+    }
+
+    function UpdateStats() {
+      document.getElementById("speedval").innerHTML = speed;
+      document.getElementById("powval").innerHTML = power;
+      document.getElementById("accval").innerHTML = acc;
+      document.getElementById("coolval").innerHTML = cool;
+      document.getElementById("lvlval").innerHTML = lvl;
+      document.getElementById("trophyval").innerHTML = trophies;
+      document.getElementById("displayName").innerHTML = displayName;
+
+      document.getElementById("speedbar").classList.add("lvl" + speed);
+      document.getElementById("powerbar").classList.add("lvl" + power);
+      document.getElementById("accbar").classList.add("lvl" + acc);
+      document.getElementById("coolbar").classList.add("lvl" + cool);
+    }
+
+    function fetchGBData() {
+      console.log("Fetching Data: #" + refreshes);
+      refreshes++;
+
+      if (friendcode != null) {
+        const url =
+          "https://f351468gBSWz.live.gamesparks.net/rs/gb_api/S2cypG37waV7wXE2cpSS4lKSRlzzgBZz/LogEventRequest";
+
+        let bodydata = {
+          "@class": ".LogEventRequest",
+          eventKey: "GB_API_PLAYER_INFO",
+          playerId: "5c1d3ddc235bac98e4cca309",
+          requestId: "LogEventRequest",
+          friendcode: friendcode,
+        };
+
+        let fetchData = {
+          method: "POST",
+          body: JSON.stringify(bodydata),
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        };
+
+        fetch(url, fetchData)
+          .then((res) => res.json())
+          .then((data) => {
+            //console.log(data);
+            let playerdata = data.scriptData.data.attr;
+            speed = playerdata.attr_speed;
+            power = playerdata.attr_pwr;
+            acc = playerdata.attr_acc;
+            cool = playerdata.attr_cool;
+            lvl = data.scriptData.data.level;
+            trophies = data.scriptData.data.trophies;
+            displayName = data.scriptData.data.display_name;
+            UpdateStats();
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
+    }
+
+    fetchGBData();
+    setInterval(fetchGBData, refreshSeconds * 1000);
+  </script>
+</html>

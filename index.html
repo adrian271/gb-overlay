@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" />
+    <base href="https://playgolfblitz.com/gbstats/" <meta charset="UTF-8" />
 
     <title>Golf Blitz Stats</title>
 
     <style>
+      body {
+        background: none !important;
+      }
+
       .lvl1 {
         width: 8.3%;
       }
@@ -237,11 +241,30 @@
         text-align: center;
         font-size: 1.35rem;
         padding: 15px !important;
-        background-color: rgba(170, 197, 250, 0.75);
+        /* background-color: rgba(170, 197, 250, 0.75); */
         border-radius: 0 0 30px 30px;
         text-shadow: -2px -2px 0 #000, 0 -2px 0 #000, 3px -2px 0 #000,
           3px 0 0 #000, 3px 3px 0 #000, 0 3px 0 #000, -2px 3px 0 #000,
           -2px 0 0 #000;
+      }
+
+      .row {
+        margin-top: 0.25rem;
+      }
+
+      .text-center {
+        position: relative;
+      }
+
+      .valtext {
+        position: absolute;
+        top: 0;
+        z-index: 1;
+        width: 100%;
+        display: block;
+        min-width: 5rem;
+        text-align: center !important;
+        width: 350px;
       }
     </style>
     <link
@@ -255,11 +278,9 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="col">
-          <p class="text-right valtext">SPEED</p>
-        </div>
         <div class="col-auto text-center">
           <span class="text-blue statval" id="speedval">1</span>
+          <p class="valtext">SPEED</p>
         </div>
         <div class="col">
           <div class="progress">
@@ -275,11 +296,9 @@
         </div>
       </div>
       <div class="row">
-        <div class="col">
-          <p class="text-right valtext">POWER</p>
-        </div>
         <div class="col-auto text-center">
           <span class="text-green statval" id="powval">1</span>
+          <p class="valtext">POWER</p>
         </div>
         <div class="col">
           <div class="progress">
@@ -295,11 +314,9 @@
         </div>
       </div>
       <div class="row">
-        <div class="col">
-          <p class="text-right valtext">ACCURACY</p>
-        </div>
         <div class="col-auto text-center">
           <span class="text-yellow statval" id="accval">1</span>
+          <p class="valtext">ACCURACY</p>
         </div>
         <div class="col">
           <div class="progress">
@@ -315,11 +332,9 @@
         </div>
       </div>
       <div class="row">
-        <div class="col">
-          <p class="text-right valtext">COOL DOWN</p>
-        </div>
         <div class="col-auto text-center">
           <span class="text-red statval" id="coolval">1</span>
+          <p class="valtext">COOL DOWN</p>
         </div>
         <div class="col">
           <div class="progress">
